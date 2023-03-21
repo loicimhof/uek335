@@ -1,28 +1,33 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import { Button, Title, Text } from 'react-native-paper';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View } from "react-native";
+import { Button, Text } from "react-native-paper";
 
-
-export default function HomeScreen({navigation}) {
-  const Stack = createNativeStackNavigator();
-
+export default function HomeScreen({ navigation }: any) {
   return (
-   <View style={styles.container}>
-      <Text variant="headlineLarge">Current Settings</Text>
-      <Button mode='contained-tonal' onPress={() =>
-        navigation.navigate('SettingsScreen')} > Edit</Button>
+    <View style={styles.container}>
+      <Text variant="headlineLarge">Title</Text>
+      <Button
+        mode="contained-tonal"
+        onPress={() => navigation.navigate("Settings")}
+      >
+        Go to settings page
+      </Button>
+      <Button
+        mode="contained-tonal"
+        onPress={() => navigation.navigate("Test")}
+      >
+        Go to test page
+      </Button>
       <StatusBar style="auto" />
-  </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
