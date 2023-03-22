@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import { Button, Title, Text, FAB } from 'react-native-paper';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View } from "react-native";
+import { Button, Title, Text, FAB } from "react-native-paper";
 
 /**
  * Diese Komponente stellt die Startseite der App dar.
@@ -24,21 +24,22 @@ export default function HomeScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-  <Text style={styles.text} variant="headlineSmall">placeholder for rhythm</Text> 
-  <Text style={styles.text} variant="headlineSmall">placeholder for day and time</Text> 
-  <Text style={styles.text} variant="headlineSmall">placeholder for repetitions</Text> 
-  <Text style={styles.text} variant="headlineLarge">Title</Text>
-      <Text variant="headlineLarge">Title</Text>
-      <Button
-        mode="contained-tonal"
-        onPress={handleSettingsNavigation}
-      >
+      <Text style={styles.text} variant="headlineLarge">
+        Title
+      </Text>
+      <Text style={styles.text} variant="headlineSmall">
+        placeholder for rhythm
+      </Text>
+      <Text style={styles.text} variant="headlineSmall">
+        placeholder for day and time
+      </Text>
+      <Text style={styles.text} variant="headlineSmall">
+        placeholder for repetitions
+      </Text>
+      <Button mode="contained-tonal" onPress={handleSettingsNavigation}>
         Go to settings page
       </Button>
-      <Button
-        mode="contained-tonal"
-        onPress={handleTestNavigation}
-      >
+      <Button mode="contained-tonal" onPress={handleTestNavigation}>
         Go to test page
       </Button>
       <StatusBar style="auto" />
@@ -51,20 +52,18 @@ export default function HomeScreen({ navigation }: any) {
  */
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#1C1B1F',
+    backgroundColor: "#1C1B1F",
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: '#fff',
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
   },
   button: {
     marginTop: 16,
-    backgroundColor: '#fff',
-    color: '#1C1B1F',
+    backgroundColor: "#fff",
+    color: "#1C1B1F",
   },
   text: {
-    color: '#fff',
+    color: "#fff",
   },
 });
-
-
