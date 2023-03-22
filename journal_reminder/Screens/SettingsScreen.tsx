@@ -19,7 +19,7 @@ export default function SettingsScreen({ navigation }: any) {
   return (
     <Provider>
     <View style={styles.container}>
-      <Text variant="headlineLarge">Settings</Text>
+      <Text style={styles.text} variant="headlineLarge">Settings</Text>
       {/* <Button mode="contained-tonal"> Edit</Button> */}
       <StatusBar style="auto" />
 
@@ -54,12 +54,22 @@ export default function SettingsScreen({ navigation }: any) {
   );
 }
 
+
+
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#1C1B1F',
     flex: 1,
-    // backgroundColor: "#1C1B1F",
-    color: "#D0BCFF ",
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#fff',
+  },
+  button: {
+    marginTop: 16,
+    backgroundColor: '#fff',
+    color: '#1C1B1F',
+  },
+  text: {
+    color: '#fff',
   },
 });
