@@ -1,6 +1,6 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View } from 'react-native';
+import { Button, Title, Text, FAB } from 'react-native-paper';
 
 export default function HomeScreen({ navigation }: any) {
   return (
@@ -18,6 +18,9 @@ export default function HomeScreen({ navigation }: any) {
       >
         Go to test page
       </Button>
+      <Text variant="headlineSmall">placeholder for rhythm</Text> 
+      <Text variant="headlineSmall">placeholder for day and time</Text> 
+      <Text variant="headlineSmall">placeholder for repetitions</Text> 
       <StatusBar style="auto" />
     </View>
   );
@@ -25,9 +28,9 @@ export default function HomeScreen({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#fff',
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

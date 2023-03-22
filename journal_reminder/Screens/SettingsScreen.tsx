@@ -1,3 +1,4 @@
+import ReminderCard from '../Components/ReminderCard';
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
@@ -49,6 +50,8 @@ export default function SettingsScreen({ navigation }: any) {
         {" "}
         cancel
       </Button>
+    <ReminderCard />
+    <Button mode='contained-tonal'> Save</Button>
     </View>
   );
 }
