@@ -4,17 +4,17 @@ import { StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
 
 import React, { useState } from "react";
-import DropDownPicker from "react-native-paper-dropdown";
+import DropDown from "react-native-paper-dropdown";
 
 export default function SettingsScreen({ navigation }: any) {
-  const [selectedValue, setSelectedValue] = useState("Option 1");
+  const [showDropDown, setShowDropDown] = useState(false);
+  const [selectedValue, setSelectedValue] = useState([]);
 
   const options = [
     { label: "Option 1", value: "Option 1" },
     { label: "Option 2", value: "Option 2" },
   ];
 
-  const [showDropDown, setShowDropDown] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -22,7 +22,7 @@ export default function SettingsScreen({ navigation }: any) {
       {/* <Button mode="contained-tonal"> Edit</Button> */}
       <StatusBar style="auto" />
 
-      <DropDownPicker
+      <DropDown
         list={options}
         placeholder="Select Options"
         value={selectedValue}
