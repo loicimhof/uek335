@@ -1,4 +1,4 @@
-import ReminderCard from '../Components/ReminderCard';
+import ReminderCard from "../Components/ReminderCard";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
@@ -14,10 +14,11 @@ export default function SettingsScreen({ navigation }: any) {
     { label: "Option 2", value: "Option 2" },
   ];
 
+  const [showDropDown, setShowDropDown] = useState(false);
+
   return (
     <View style={styles.container}>
       <Text variant="headlineLarge">Settings</Text>
-      <Text>Open up App.tsx to start working on your app!</Text>
       {/* <Button mode="contained-tonal"> Edit</Button> */}
       <StatusBar style="auto" />
 
@@ -27,14 +28,10 @@ export default function SettingsScreen({ navigation }: any) {
         value={selectedValue}
         setValue={setSelectedValue}
         visible={false}
-        onDismiss={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-        showDropDown={function (): void {
-          throw new Error("Function not implemented.");
-        }}
+        showDropDown={() => setShowDropDown(true)}
+        onDismiss={() => setShowDropDown(false)}
       />
-
+      <ReminderCard />
       <Button
         style={{ backgroundColor: "#00ff69" }}
         mode="contained-tonal"
@@ -50,8 +47,6 @@ export default function SettingsScreen({ navigation }: any) {
         {" "}
         cancel
       </Button>
-    <ReminderCard />
-    <Button mode='contained-tonal'> Save</Button>
     </View>
   );
 }
@@ -59,7 +54,7 @@ export default function SettingsScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#1C1B1F",
+    // backgroundColor: "#1C1B1F",
     color: "#D0BCFF ",
     alignItems: "center",
     justifyContent: "center",

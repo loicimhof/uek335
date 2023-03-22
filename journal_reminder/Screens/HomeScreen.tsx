@@ -6,6 +6,10 @@ export default function HomeScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
       <Text variant="headlineLarge">Title</Text>
+      <Text variant="headlineSmall">placeholder for rhythm</Text> 
+      <Text variant="headlineSmall">placeholder for day and time</Text> 
+      <Text variant="headlineSmall">placeholder for repetitions</Text> 
+      <StatusBar style="auto" />
       <Button
         mode="contained-tonal"
         onPress={() => navigation.navigate("Settings")}
@@ -18,10 +22,7 @@ export default function HomeScreen({ navigation }: any) {
       >
         Go to test page
       </Button>
-      <Text variant="headlineSmall">placeholder for rhythm</Text> 
-      <Text variant="headlineSmall">placeholder for day and time</Text> 
-      <Text variant="headlineSmall">placeholder for repetitions</Text> 
-      <StatusBar style="auto" />
+
     </View>
   );
 }
