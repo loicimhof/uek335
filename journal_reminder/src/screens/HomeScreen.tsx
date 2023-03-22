@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import { Button, Title, Text, FAB } from "react-native-paper";
+import { Button, Text } from "react-native-paper";
 
 /**
  * Diese Komponente stellt die Startseite der App dar.
@@ -23,25 +23,35 @@ export default function HomeScreen({ navigation }: any) {
   };
 
   return (
-    <View style={styles.container}>
+    <>
+      <View style={styles.container}>
+        <Text style={styles.textTitle} variant="headlineLarge">
+          Current Settings
+        </Text>
 
-<Text style={styles.textTitle} variant="headlineLarge">Current Settings</Text>
+        <Text style={styles.text} variant="headlineSmall">
+          placeholder for rhythm
+        </Text>
 
-  <Text style={styles.text} variant="headlineSmall">placeholder for rhythm</Text> 
-  <Text style={styles.text} variant="headlineSmall">placeholder for day and time</Text> 
-  <Text style={styles.text} variant="headlineSmall">placeholder for repetitions</Text> 
-  
-      <Button
-        mode="contained-tonal"
-        onPress={handleSettingsNavigation}
-      >
-        Go to settings page
-      </Button>
-      <Button mode="contained-tonal" onPress={handleTestNavigation}>
-        Go to test page
-      </Button>
-      <StatusBar style="auto" />
-    </View>
+        <Text style={styles.text} variant="headlineSmall">
+          placeholder for day and time
+        </Text>
+
+        <Text style={styles.text} variant="headlineSmall">
+          placeholder for repetitions
+        </Text>
+
+        <Button
+          mode="contained-tonal"
+          style={{ margin: "5%" }}
+          onPress={handleSettingsNavigation}
+        >
+          Go to settings page
+        </Button>
+
+        <StatusBar style="auto" />
+      </View>
+    </>
   );
 }
 
@@ -65,6 +75,6 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   textTitle: {
-    color: '#D0BCFF',
+    color: "#D0BCFF",
   },
 });

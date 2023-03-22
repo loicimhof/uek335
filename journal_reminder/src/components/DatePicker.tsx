@@ -1,22 +1,24 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Button } from "react-native-paper";
 import {
   DatePickerModal,
-  de,
+  en,
   registerTranslation,
 } from "react-native-paper-dates";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-registerTranslation("de", de);
+registerTranslation("en", en);
 
 export default function DatePicker() {
-  const [date, setDate] = React.useState(new Date());
+  const [date, setDate] = React.useState(undefined);
   const [open, setOpen] = React.useState(false);
 
-  let offset = 0;
+  /*  let offset = 0;
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
   let result = null;
+*/
 
   const weekdays = [
     "Sonntag",
@@ -29,7 +31,6 @@ export default function DatePicker() {
   ];
 
   const onDismissSingle = React.useCallback(() => {
-    console.log("blah blah blah");
     setOpen(false);
   }, [setOpen]);
 
@@ -38,9 +39,10 @@ export default function DatePicker() {
       setOpen(false);
       setDate(params.date);
     },
-    [setDate]
+    [setOpen, setDate]
   );
 
+  /*
   useEffect(() => {
     do {
       result = new Date(year, month, offset);
@@ -51,15 +53,15 @@ export default function DatePicker() {
     setDate(result);
   }, []);
 
-  const selectedDate = `${date
-    .getDate()
-    .toLocaleString("de-CH", {
-      minimumIntegerDigits: 2,
-    })}.${month.toLocaleString("de-CH", { minimumIntegerDigits: 2 })}.${year}`;
+  const selectedDate = `${date.getDate().toLocaleString("de-CH", {
+    minimumIntegerDigits: 2,
+  })}.${month.toLocaleString("de-CH", { minimumIntegerDigits: 2 })}.${year}`;
+  */
 
   return (
-    <SafeAreaProvider style={{ maxHeight: 100 }}>
-      <View>
+    <>
+      <View style={{ margin: "5%" }}>
+        {/* 
         <TouchableOpacity
           onPress={() => setOpen(true)}
           style={styles.container}
@@ -67,8 +69,13 @@ export default function DatePicker() {
           <Text style={styles.dateText}>{selectedDate}</Text>
           <Text style={styles.dayText}>{weekdays[date.getDay()]}</Text>
         </TouchableOpacity>
+        */}
+        <Button onPress={() => setOpen(true)} uppercase={false} mode="outlined">
+          Pick single date
+        </Button>
+
         <DatePickerModal
-          locale="de"
+          locale="en"
           mode="single"
           date={date}
           visible={open}
@@ -76,7 +83,7 @@ export default function DatePicker() {
           onDismiss={onDismissSingle}
         />
       </View>
-    </SafeAreaProvider>
+    </>
   );
 }
 

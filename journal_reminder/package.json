@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@react-native-community/datetimepicker": "^7.0.0",
     "@types/react": "~18.0.14",
     "@types/react-native": "^0.71.4",
     "tsdocs": "^1.0.2",
