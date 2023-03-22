@@ -4,52 +4,39 @@ import { StyleSheet, View } from "react-native";
 import { Button, Provider, Text } from "react-native-paper";
 
 import React, { useState } from "react";
-import DropDown from "react-native-paper-dropdown";
+import RhythmDropDown from "../Components/RhythmDropDown";
+import WeekdayDropDown from "../Components/WeekdayDropDown";
+import DatePicker from "../Components/DatePicker";
 
 export default function SettingsScreen({ navigation }: any) {
-  const [showDropDown, setShowDropDown] = useState(false);
-  const [selectedValue, setSelectedValue] = useState([]);
-
-  const options = [
-    { label: "Option 1", value: "Option 1" },
-    { label: "Option 2", value: "Option 2" },
-  ];
-
-
   return (
     <Provider>
-    <View style={styles.container}>
-      <Text style={styles.text} variant="headlineLarge">Settings</Text>
-      {/* <Button mode="contained-tonal"> Edit</Button> */}
       <StatusBar style="auto" />
+      <View style={styles.container}>
+        <Text variant="headlineLarge">Settings</Text>
+        {/* <Button mode="contained-tonal"> Edit</Button> */}
+        <RhythmDropDown />
+        <WeekdayDropDown />
+        <DatePicker />
 
-      <DropDown
-        list={options}
-        placeholder="Select Options"
-        value={selectedValue}
-        setValue={setSelectedValue}
-        showDropDown={() => setShowDropDown(true)}
-        onDismiss={() => setShowDropDown(false)}
-        visible={showDropDown}
-      />
-      
-      <ReminderCard />
-      <Button
-        style={{ backgroundColor: "#00ff69" }}
-        mode="contained-tonal"
-        onPress={() => navigation.navigate("Home")}
-      >
-        {" "}
-        save
-      </Button>
-      <Button
-        mode="contained-tonal"
-        onPress={() => navigation.navigate("Home")}
-      >
-        {" "}
-        cancel
-      </Button>
-    </View>
+        <ReminderCard />
+        <Button
+          style={{ backgroundColor: "#00ff69" }}
+          mode="contained-tonal"
+          onPress={() => navigation.navigate("Home")}
+        >
+          {" "}
+          save
+        </Button>
+        <Button
+          mode="contained-tonal"
+          onPress={() => navigation.navigate("Home")}
+        >
+          {" "}
+          cancel
+        </Button>
+      </View>
+ 
     </Provider>
   );
 }

@@ -15,7 +15,6 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 0.2,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     // borderWidth: 2,
