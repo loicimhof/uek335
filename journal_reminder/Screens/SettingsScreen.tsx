@@ -1,6 +1,6 @@
 import ReminderCard from "../Components/ReminderCard";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Provider, Text } from "react-native-paper";
 
 import React, { useState } from "react";
@@ -12,6 +12,9 @@ export default function SettingsScreen({ navigation }: any, selectedValue: strin
   return (
     <Provider>
       <StatusBar style="auto" />
+
+       <ScrollView>
+
       <View style={styles.container}>
         <Text style={styles.textTitle} variant="headlineLarge">Settings</Text>
         {/* <Button mode="contained-tonal"> Edit</Button> */}
@@ -36,7 +39,8 @@ export default function SettingsScreen({ navigation }: any, selectedValue: strin
           cancel
         </Button>
       </View>
- 
+      </ScrollView>
+
     </Provider>
   );
 }
@@ -50,6 +54,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     color: '#fff',
+    height: 1000,
+
   },
   button: {
     marginTop: 16,
@@ -61,5 +67,10 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     color: '#D0BCFF',
+  },
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: "80%",
   },
 });
