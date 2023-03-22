@@ -8,7 +8,7 @@ import RhythmDropDown from "../Components/RhythmDropDown";
 import WeekdayDropDown from "../Components/WeekdayDropDown";
 import DatePicker from "../Components/DatePicker";
 
-export default function SettingsScreen({ navigation }: any) {
+export default function SettingsScreen({ navigation }: any, selectedValue: string) {
   return (
     <Provider>
       <StatusBar style="auto" />

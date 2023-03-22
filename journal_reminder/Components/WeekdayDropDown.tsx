@@ -15,6 +15,11 @@ export default function WeekdayDropDown({ navigation }: any) {
     { label: "Tuesday", value: "Tuesday" },
   ];
 
+  const handleSelectedValueChange = (value: any, onSelectedValueChange: any) => {
+    setSelectedValue(value);
+    onSelectedValueChange(value);
+  };
+
   return (
     <Provider>
     <View style={styles.container}>
