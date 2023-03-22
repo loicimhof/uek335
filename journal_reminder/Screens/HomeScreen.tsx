@@ -24,10 +24,8 @@ export default function HomeScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
-<<<<<<< HEAD
 
-<Text style={styles.textTitle} variant="headlineLarge">Title</Text>
-      <Text variant="headlineLarge">Title</Text>
+<Text style={styles.textTitle} variant="headlineLarge">Current Settings</Text>
 
   <Text style={styles.text} variant="headlineSmall">placeholder for rhythm</Text> 
   <Text style={styles.text} variant="headlineSmall">placeholder for day and time</Text> 
@@ -37,21 +35,6 @@ export default function HomeScreen({ navigation }: any) {
         mode="contained-tonal"
         onPress={handleSettingsNavigation}
       >
-=======
-      <Text style={styles.text} variant="headlineLarge">
-        Title
-      </Text>
-      <Text style={styles.text} variant="headlineSmall">
-        placeholder for rhythm
-      </Text>
-      <Text style={styles.text} variant="headlineSmall">
-        placeholder for day and time
-      </Text>
-      <Text style={styles.text} variant="headlineSmall">
-        placeholder for repetitions
-      </Text>
-      <Button mode="contained-tonal" onPress={handleSettingsNavigation}>
->>>>>>> fix_and_colorscheme
         Go to settings page
       </Button>
       <Button mode="contained-tonal" onPress={handleTestNavigation}>
