@@ -1,7 +1,7 @@
 import ReminderCard from "../Components/ReminderCard";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { Button, Provider, Text } from "react-native-paper";
 
 import React, { useState } from "react";
 import DropDown from "react-native-paper-dropdown";
@@ -17,6 +17,7 @@ export default function SettingsScreen({ navigation }: any) {
 
 
   return (
+    <Provider>
     <View style={styles.container}>
       <Text variant="headlineLarge">Settings</Text>
       {/* <Button mode="contained-tonal"> Edit</Button> */}
@@ -27,10 +28,11 @@ export default function SettingsScreen({ navigation }: any) {
         placeholder="Select Options"
         value={selectedValue}
         setValue={setSelectedValue}
-        visible={false}
         showDropDown={() => setShowDropDown(true)}
         onDismiss={() => setShowDropDown(false)}
+        visible={showDropDown}
       />
+      
       <ReminderCard />
       <Button
         style={{ backgroundColor: "#00ff69" }}
@@ -48,6 +50,7 @@ export default function SettingsScreen({ navigation }: any) {
         cancel
       </Button>
     </View>
+    </Provider>
   );
 }
 
