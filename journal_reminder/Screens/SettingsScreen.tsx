@@ -13,7 +13,7 @@ export default function SettingsScreen({ navigation }: any) {
     <Provider>
       <StatusBar style="auto" />
       <View style={styles.container}>
-        <Text variant="headlineLarge">Settings</Text>
+        <Text style={styles.textTitle} variant="headlineLarge">Settings</Text>
         {/* <Button mode="contained-tonal"> Edit</Button> */}
         <RhythmDropDown />
         <WeekdayDropDown />
@@ -58,5 +58,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
+  },
+  textTitle: {
+    color: '#D0BCFF',
   },
 });

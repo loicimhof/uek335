@@ -24,11 +24,14 @@ export default function HomeScreen({ navigation }: any) {
 
   return (
     <View style={styles.container}>
+
+<Text style={styles.textTitle} variant="headlineLarge">Title</Text>
+      <Text variant="headlineLarge">Title</Text>
+
   <Text style={styles.text} variant="headlineSmall">placeholder for rhythm</Text> 
   <Text style={styles.text} variant="headlineSmall">placeholder for day and time</Text> 
   <Text style={styles.text} variant="headlineSmall">placeholder for repetitions</Text> 
-  <Text style={styles.text} variant="headlineLarge">Title</Text>
-      <Text variant="headlineLarge">Title</Text>
+  
       <Button
         mode="contained-tonal"
         onPress={handleSettingsNavigation}
@@ -64,6 +67,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
+  },
+  textTitle: {
+    color: '#D0BCFF',
   },
 });
 

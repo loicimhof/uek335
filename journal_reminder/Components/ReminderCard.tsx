@@ -6,7 +6,7 @@ import Reminder from '../Components/Reminder';
 export default function SettingsScreen() {
   return (
    <View style={styles.container}>
-      <Text variant="titleLarge">Reminder</Text>
+      <Text style={styles.text} variant="titleLarge">Reminder</Text>
       <Reminder />
     </View>
   );
@@ -17,7 +17,11 @@ const styles = StyleSheet.create({
     flex: 0.2,
     alignItems: 'center',
     justifyContent: 'center',
+
     // borderWidth: 2,
     // borderColor: 'green',
+  },
+  text: {
+    color: '#D0BCFF',
   },
 });
