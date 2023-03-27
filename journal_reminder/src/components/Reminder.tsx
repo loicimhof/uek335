@@ -31,7 +31,7 @@ const Reminder = () => {
         <Switch
           value={isReminderOn}
           onValueChange={() => {
-            onToggleSwitch;
+            onToggleSwitch();
             test();
           }}
         />

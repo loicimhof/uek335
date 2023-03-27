@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
 
@@ -10,12 +11,11 @@ import { Button, Text } from "react-native-paper";
  * @param {object} navigation - Ein Objekt, das Funktionen zum Navigieren zwischen App-Bildschirmen bereitstellt.
  */
 export default function HomeScreen({ navigation }: any) {
-  const [status, setStatus] = useState();
-  const statusToPrint = `${status}`;
-
+  const [status, setStatus] = useState(false);
+  let statusToPrint = `${status}`;
 
   /**
-   * Diese Funktion wird aufgerufen, wenn der Benutzer auf den "Go to settings page" Button klickt.
+   * Diese Funktion wird aufgerufen, wenn der Benutzer auf den "Edit" Button klickt.
    */
   const handleSettingsNavigation = () => {
     navigation.navigate("Settings");
@@ -24,14 +24,12 @@ export default function HomeScreen({ navigation }: any) {
   async function myStatusFunction() {
     const activationStatus = JSON.parse(await AsyncStorage.getItem("activate"));
 
-    if (activationStatus) {
+    if (activationStatus != null) {
       setStatus(activationStatus);
-      console.log("Activation Status = " +activationStatus)
-      console.log("Status = " +status)
-      return status;
+      statusToPrint = `${status}`;
+      return statusToPrint;
     } else {
-      console.log(status  + " S")
-      return status;
+      return statusToPrint;
     }
   }
 
@@ -39,9 +37,9 @@ export default function HomeScreen({ navigation }: any) {
     await AsyncStorage.clear();
   }
 
-  useEffect(() => {
+  useFocusEffect(() => {
     myStatusFunction();
-  }, []);
+  });
 
   return (
     <>
