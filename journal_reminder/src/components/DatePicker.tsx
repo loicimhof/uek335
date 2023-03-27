@@ -70,8 +70,13 @@ export default function DatePicker() {
           <Text style={styles.dayText}>{weekdays[date.getDay()]}</Text>
         </TouchableOpacity>
         */}
-        <Button onPress={() => setOpen(true)} uppercase={false} mode="outlined">
-          Pick single date
+        <Button
+          onPress={() => setOpen(true)}
+          uppercase={false}
+          mode="contained"
+          style={{ borderRadius: 12 }}
+        >
+          Pick date
         </Button>
 
         <DatePickerModal

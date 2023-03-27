@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { Text, Switch } from "react-native-paper";
 
@@ -9,11 +10,30 @@ import { Text, Switch } from "react-native-paper";
 const Activate = () => {
   const [isActivateOn, setIsActivateOn] = useState(false);
 
+  async function asyncStorageGet() {
+    const myStorage = JSON.parse(await AsyncStorage.getItem("activate"));
 
-    /**
-   * Callback function to toggle activation state.
-   */
-  const onToggleSwitch = () => setIsActivateOn(!isActivateOn);
+    if (myStorage) {
+      return myStorage;
+    } else {
+      return isActivateOn;
+    }
+  }
+
+  useEffect(() => {
+    asyncStorageGet().then((res) => {
+      if (res != null) {
+        setIsActivateOn(res);
+      }
+    });
+  }, []);
+
+  const onActivateToggle = async () => {
+    let workValue = await asyncStorageGet();
+    workValue = !workValue;
+    setIsActivateOn(workValue);
+    AsyncStorage.setItem("activate", JSON.stringify(workValue));
+  };
 
   return (
     <>
@@ -28,7 +48,7 @@ const Activate = () => {
           Activate
         </Text>
 
-        <Switch value={isActivateOn} onValueChange={onToggleSwitch} />
+        <Switch value={isActivateOn} onValueChange={() => onActivateToggle()} />
       </View>
     </>
   );

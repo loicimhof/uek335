@@ -1,4 +1,6 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
+import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
 
@@ -8,6 +10,10 @@ import { Button, Text } from "react-native-paper";
  * @param {object} navigation - Ein Objekt, das Funktionen zum Navigieren zwischen App-Bildschirmen bereitstellt.
  */
 export default function HomeScreen({ navigation }: any) {
+  const [status, setStatus] = useState();
+  const statusToPrint = `${status}`;
+
+
   /**
    * Diese Funktion wird aufgerufen, wenn der Benutzer auf den "Go to settings page" Button klickt.
    */
@@ -15,18 +21,37 @@ export default function HomeScreen({ navigation }: any) {
     navigation.navigate("Settings");
   };
 
-  /**
-   * Diese Funktion wird aufgerufen, wenn der Benutzer auf den "Go to test page" Button klickt.
-   */
-  const handleTestNavigation = () => {
-    navigation.navigate("Test");
-  };
+  async function myStatusFunction() {
+    const activationStatus = JSON.parse(await AsyncStorage.getItem("activate"));
+
+    if (activationStatus) {
+      setStatus(activationStatus);
+      console.log("Activation Status = " +activationStatus)
+      console.log("Status = " +status)
+      return status;
+    } else {
+      console.log(status  + " S")
+      return status;
+    }
+  }
+
+  async function handleClear() {
+    await AsyncStorage.clear();
+  }
+
+  useEffect(() => {
+    myStatusFunction();
+  }, []);
 
   return (
     <>
       <View style={styles.container}>
         <Text style={styles.textTitle} variant="headlineLarge">
           Current Settings
+        </Text>
+
+        <Text style={styles.text} variant="headlineSmall">
+          Active: {statusToPrint}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
@@ -38,7 +63,7 @@ export default function HomeScreen({ navigation }: any) {
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          placeholder for repetitions
+          placeholder for reminder
         </Text>
 
         <Button
@@ -46,7 +71,15 @@ export default function HomeScreen({ navigation }: any) {
           style={{ margin: "5%" }}
           onPress={handleSettingsNavigation}
         >
-          Go to settings page
+          Edit
+        </Button>
+
+        <Button
+          mode="contained-tonal"
+          style={{ margin: "5%" }}
+          onPress={() => handleClear()}
+        >
+          Clear
         </Button>
 
         <StatusBar style="auto" />

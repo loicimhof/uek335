@@ -42,7 +42,7 @@ export default function WeekdayDropDown({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: {
-    color: "#D0BCFF ",
+    color: "#D0BCFF",
     alignItems: "center",
     justifyContent: "center",
   },

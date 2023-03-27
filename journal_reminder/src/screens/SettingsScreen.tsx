@@ -20,22 +20,16 @@ export default function SettingsScreen({ navigation }: any) {
   return (
     <>
       <View style={styles.background}>
-        <Text style={styles.textTitle} variant="headlineLarge">
-          Settings
-        </Text>
         <View style={styles.container}>
-
-        <View style={{ margin: "5%" }}>
+          <View style={{ margin: "5%" }}>
             <Activate />
           </View>
 
-
-      
           <View style={styles.dropdown}>
             <RhythmDropDown />
           </View>
 
-          <View style={{ margin: "5%" }}>
+          <View style={styles.dropdown}>
             <WeekdayDropDown />
           </View>
 
@@ -48,17 +42,22 @@ export default function SettingsScreen({ navigation }: any) {
           </View>
 
           <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
+            style={{
+              margin: "5%",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
           >
             <Button
               mode="contained-tonal"
               onPress={() => navigation.navigate("Home")}
+              style={{ borderRadius: 12 }}
             >
               Cancel
             </Button>
 
             <Button
-              style={{ backgroundColor: "#00ff69" }}
+              style={{ backgroundColor: "#00ff69", borderRadius: 12 }}
               mode="contained-tonal"
               onPress={() => navigation.navigate("Home")}
             >
