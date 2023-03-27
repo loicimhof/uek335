@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import { Text, Switch } from "react-native-paper";
 
+
+/**
+ * A component to toggle activation state.
+ */
 const Activate = () => {
   const [isActivateOn, setIsActivateOn] = useState(false);
 
+
+    /**
+   * Callback function to toggle activation state.
+   */
   const onToggleSwitch = () => setIsActivateOn(!isActivateOn);
 
   return (

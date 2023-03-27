@@ -8,6 +8,14 @@ import DatePicker from "../components/DatePicker";
 import Reminder from "../components/Reminder";
 import Activate from "../components/Activate";
 
+
+
+
+/**
+ * Represents the Settings Screen component.
+ * @param navigation - The navigation object used to navigate to other screens.
+ * @returns The Settings Screen component.
+ */
 export default function SettingsScreen({ navigation }: any) {
   return (
     <>
@@ -84,6 +92,11 @@ const styles = StyleSheet.create({
   text: {
     color: "#fff",
   },
+
+
+   /**
+   * The style for the title of the Settings Screen component.
+   */
   textTitle: {
     color: "#D0BCFF",
   },
