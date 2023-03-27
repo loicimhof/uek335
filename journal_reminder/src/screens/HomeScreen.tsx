@@ -3,20 +3,20 @@ import { StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
 
 /**
- * Diese Komponente stellt die Startseite der App dar.
+ * This component represents the home page of the app.
  *
- * @param {object} navigation - Ein Objekt, das Funktionen zum Navigieren zwischen App-Bildschirmen bereitstellt.
+ * @param {object} navigation - An object that provides functions for navigating between app screens.
  */
 export default function HomeScreen({ navigation }: any) {
   /**
-   * Diese Funktion wird aufgerufen, wenn der Benutzer auf den "Go to settings page" Button klickt.
+   * This function is called when the user clicks on the "Go to settings page" button.
    */
   const handleSettingsNavigation = () => {
     navigation.navigate("Settings");
   };
 
   /**
-   * Diese Funktion wird aufgerufen, wenn der Benutzer auf den "Go to test page" Button klickt.
+   * This function is called when the user clicks on the "Go to test page" button.
    */
   const handleTestNavigation = () => {
     navigation.navigate("Test");
@@ -56,7 +56,7 @@ export default function HomeScreen({ navigation }: any) {
 }
 
 /**
- * Ein Objekt, das CSS-Styles für die HomeScreen-Komponente definiert.
+ * An object that defines CSS styles for the HomeScreen component.
  */
 const styles = StyleSheet.create({
   container: {
