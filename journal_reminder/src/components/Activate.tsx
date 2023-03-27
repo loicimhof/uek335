@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import { Text, Switch } from "react-native-paper";
 
-const Reminder = () => {
-  const [isReminderOn, setIsReminderOn] = useState(false);
+const Activate = () => {
+  const [isActivateOn, setIsActivateOn] = useState(false);
 
-  const onToggleSwitch = () => setIsReminderOn(!isReminderOn);
+  const onToggleSwitch = () => setIsActivateOn(!isActivateOn);
 
   return (
     <>
@@ -17,13 +17,13 @@ const Reminder = () => {
         }}
       >
         <Text style={{ color: "#D0BCFF" }} variant="bodyLarge">
-          Reminder
+          Activate
         </Text>
 
-        <Switch value={isReminderOn} onValueChange={onToggleSwitch} />
+        <Switch value={isActivateOn} onValueChange={onToggleSwitch} />
       </View>
     </>
   );
 };
 
-export default Reminder;
+export default Activate;

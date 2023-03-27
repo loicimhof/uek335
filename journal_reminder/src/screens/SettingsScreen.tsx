@@ -6,6 +6,7 @@ import RhythmDropDown from "../components/RhythmDropDown";
 import WeekdayDropDown from "../components/WeekdayDropDown";
 import DatePicker from "../components/DatePicker";
 import Reminder from "../components/Reminder";
+import Activate from "../components/Activate";
 
 export default function SettingsScreen({ navigation }: any) {
   return (
@@ -14,8 +15,14 @@ export default function SettingsScreen({ navigation }: any) {
         <Text style={styles.textTitle} variant="headlineLarge">
           Settings
         </Text>
-
         <View style={styles.container}>
+
+        <View style={{ margin: "5%" }}>
+            <Activate />
+          </View>
+
+
+      
           <View style={styles.dropdown}>
             <RhythmDropDown />
           </View>
