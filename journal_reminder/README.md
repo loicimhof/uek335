@@ -1,12 +1,21 @@
 # uek335
-## Instalation
+
+## Installation
+
 1. Clone this repo
-2. open the terminal 
-3. type "cd journal_reminder"
-4. type "npm i"
+2. Open it in a terminal
+3. Type `npm i`
 
-## To start the projekt:
-type "npm run" 
+<br>
 
-then a QR code pops out in the terminal.
-you can scan this with Expo Go on Android or with your camera on apple.
+## To start the project
+
+Type `npm start`
+
+### Phone
+
+Scan this QR code with Expo Go (Android) or the Camera app (iOS)
+
+### Emulator
+
+Type `a` to start for an Android device or `i` for an iOS device
