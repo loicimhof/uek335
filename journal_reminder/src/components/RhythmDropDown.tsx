@@ -23,7 +23,10 @@ export default function RhythmDropDown({ navigation }: any) {
           showDropDown={() => setShowDropDown(true)}
           onDismiss={() => setShowDropDown(false)}
           visible={showDropDown}
-        />
+          dropDownItemStyle={styles.dropdown}
+          dropDownItemTextStyle={styles.dropdownItem}
+          // itemLabelStyle={styles.dropdownItemLabel}        
+          />
       </View>
     </>
   );
@@ -34,5 +37,25 @@ const styles = StyleSheet.create({
     color: "#D0BCFF ",
     alignItems: "center",
     justifyContent: "center",
+  },
+  dropdown: {
+    width: "100%",
+    backgroundColor: "#1E1E1E",
+    color: "#fff", // white text color
+  },
+  dropdownLabel: {
+    color: "#fff", // white text color
+    fontSize: 16,
+  },
+  dropdownItem: {
+    justifyContent: "flex-start",
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "#666", // a shade of gray
+  },
+  dropdownItemLabel: {
+    color: "#fff", // white text color
+    fontSize: 16,
   },
 });

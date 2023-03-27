@@ -16,7 +16,7 @@ export default function SettingsScreen({ navigation }: any) {
         </Text>
 
         <View style={styles.container}>
-          <View style={{ margin: "5%" }}>
+          <View style={styles.dropdown}>
             <RhythmDropDown />
           </View>
 
@@ -32,21 +32,24 @@ export default function SettingsScreen({ navigation }: any) {
             <Reminder />
           </View>
 
-          <Button
-            style={{ backgroundColor: "#00ff69", margin: "5%" }}
-            mode="contained-tonal"
-            onPress={() => navigation.navigate("Home")}
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            Save
-          </Button>
+            <Button
+              mode="contained-tonal"
+              onPress={() => navigation.navigate("Home")}
+            >
+              Cancel
+            </Button>
 
-          <Button
-            mode="contained-tonal"
-            style={{ margin: "5%" }}
-            onPress={() => navigation.navigate("Home")}
-          >
-            Cancel
-          </Button>
+            <Button
+              style={{ backgroundColor: "#00ff69" }}
+              mode="contained-tonal"
+              onPress={() => navigation.navigate("Home")}
+            >
+              Save
+            </Button>
+          </View>
 
           <StatusBar style="auto" />
         </View>
@@ -76,5 +79,8 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     color: "#D0BCFF",
+  },
+  dropdown: {
+    margin: "5%",
   },
 });
