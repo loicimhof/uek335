@@ -95,18 +95,6 @@ export default function HomeScreen({ navigation }) {
     }
   }
 
-  async function handleClear() {
-    const asyncStorageKeys = await AsyncStorage.getAllKeys();
-    if (asyncStorageKeys.length > 0) {
-      if (Platform.OS === "android") {
-        await AsyncStorage.clear();
-      }
-      if (Platform.OS === "ios") {
-        await AsyncStorage.multiRemove(asyncStorageKeys);
-      }
-    }
-  }
-
   useFocusEffect(
     React.useCallback(() => {
       getStatus();
@@ -158,17 +146,6 @@ export default function HomeScreen({ navigation }) {
         >
           Edit
         </Button>
-
-        <Button
-          mode="contained-tonal"
-          style={styles.button}
-          onPress={() => {
-            handleClear();
-          }}
-        >
-          Clear
-        </Button>
-
         <StatusBar style="auto" />
       </View>
     </>
