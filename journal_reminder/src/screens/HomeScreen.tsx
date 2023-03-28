@@ -18,7 +18,12 @@ export default function HomeScreen({ navigation }) {
   const [time, setTime] = useState("");
   const [weekday, setWeekday] = useState([]);
   const [rhythm, setRhythm] = useState([]);
+  const [remindercount, setRemindercount] = useState([]);
 
+
+  let statusToPrint = `${status}`;
+  let rhythmToPrint = `${rhythm}`;
+  let weekdayToPrint = `${weekday}`;
   async function getStatus() {
     const activateStorage = JSON.parse(await AsyncStorage.getItem("activate"));
 
@@ -71,6 +76,20 @@ export default function HomeScreen({ navigation }) {
       return dateStorage;
     } else {
       return date;
+    }
+  }
+
+  async function myReminderCountFunction() {
+    const weekdayFromAsyncStorage = JSON.parse(
+      await AsyncStorage.getItem("remindercount")
+    );
+
+    if (weekday != null) {
+      setWeekday(weekdayFromAsyncStorage);
+      weekdayToPrint = `${weekdayFromAsyncStorage}`;
+      return weekdayToPrint;
+    } else {
+      return weekdayToPrint;
     }
   }
 
