@@ -74,32 +74,17 @@ export default function HomeScreen({ navigation }: any) {
     await AsyncStorage.clear();
   }
 
-  /*
-  useFocusEffect(() => {
-    myStatusFunction();
-    myRhythmFunction();
-    myWeekdayFunction();
-  });
-  */
-
-  useFocusEffect(() => {
-    myStatusFunction();
-    myRhythmFunction();
-    myWeekdayFunction();
-  }, []);
-
-  
 
 
-  /*
   useFocusEffect(
     React.useCallback(() => {
       myStatusFunction();
       myRhythmFunction();
       myWeekdayFunction();
-    }, [status, rhythm, weekday])
+      console.log("use effect ausgeführt")
+    }, [])
   );
-  */
+
 
   return (
     <>
