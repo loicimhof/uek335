@@ -52,7 +52,7 @@ export default function SettingsScreen({ navigation }) {
           >
             <Button
               mode="contained-tonal"
-              style={{ borderRadius: 12, margin: 5}}
+              style={{ borderRadius: 12, margin: 5 }}
               onPress={() => {
                 navigation.navigate("Home");
               }}
@@ -62,7 +62,11 @@ export default function SettingsScreen({ navigation }) {
 
             <Button
               mode="contained-tonal"
-              style={{ backgroundColor: "#00ff69", borderRadius: 12, margin: 5 }}
+              style={{
+                backgroundColor: "#00ff69",
+                borderRadius: 12,
+                margin: 5,
+              }}
               onPress={() => {
                 navigation.navigate("Home");
               }}

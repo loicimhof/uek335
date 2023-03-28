@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import DropDown from "react-native-paper-dropdown";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function ReminderDropdown({ navigation }: any) {
+export default function ReminderDropdown() {
   const [showDropDown, setShowDropDown] = useState(false);
   const [selectedValue, setSelectedValue] = useState([0]);
 
