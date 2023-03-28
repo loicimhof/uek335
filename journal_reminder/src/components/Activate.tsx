@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { Text, Switch } from "react-native-paper";
 
-
 /**
  * A component to toggle activation state.
  */

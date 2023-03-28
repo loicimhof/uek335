@@ -31,13 +31,6 @@ export default function RhythmDropDown({ navigation }: any) {
     });
   }, []);
 
-  const onDropSelection = async () => {
-    let workValue = await asyncStorageGet();
-    setSelectedValue(workValue);
-    AsyncStorage.setItem("rhythm", JSON.stringify(workValue));
-    setShowDropDown(false);
-  };
-
   return (
     <>
       <View style={styles.container}>
@@ -48,7 +41,7 @@ export default function RhythmDropDown({ navigation }: any) {
           setValue={(selectedValue) => {
             setSelectedValue(selectedValue);
             AsyncStorage.setItem("rhythm", JSON.stringify(selectedValue));
-            setShowDropDown(false)
+            setShowDropDown(false);
           }}
           showDropDown={() => setShowDropDown(true)}
           onDismiss={() => setShowDropDown(false)}

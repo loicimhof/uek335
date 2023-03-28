@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 import {
   DatePickerModal,
@@ -34,7 +34,6 @@ export default function DatePicker() {
     },
     [setOpen, setDate]
   );
-
 
   return (
     <>

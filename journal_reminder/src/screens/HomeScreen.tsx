@@ -71,8 +71,6 @@ export default function HomeScreen({ navigation }: any) {
     await AsyncStorage.clear();
   }
 
-
-
   useFocusEffect(
     React.useCallback(() => {
       myStatusFunction();
@@ -80,7 +78,6 @@ export default function HomeScreen({ navigation }: any) {
       myWeekdayFunction();
     }, [])
   );
-
 
   return (
     <>
@@ -98,7 +95,7 @@ export default function HomeScreen({ navigation }: any) {
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          day and time: {weekdayToPrint}
+          Weekday: {weekdayToPrint}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">

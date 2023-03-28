@@ -1,15 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { Button } from "react-native-paper";
 import React from "react";
 import RhythmDropDown from "../components/RhythmDropDown";
 import WeekdayDropDown from "../components/WeekdayDropDown";
 import DatePicker from "../components/DatePicker";
 import Reminder from "../components/Reminder";
 import Activate from "../components/Activate";
-
-
-
 
 /**
  * Represents the Settings Screen component.
@@ -92,8 +89,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
 
-
-   /**
+  /**
    * The style for the title of the Settings Screen component.
    */
   textTitle: {

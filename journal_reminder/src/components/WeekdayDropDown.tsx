@@ -16,14 +16,6 @@ export default function WeekdayDropDown({ navigation }: any) {
     { label: "Friday", value: "Friday" },
   ];
 
-  const handleSelectedValueChange = (
-    value: any,
-    onSelectedValueChange: any
-  ) => {
-    setSelectedValue(value);
-    onSelectedValueChange(value);
-  };
-
   return (
     <>
       <View style={styles.container}>
@@ -34,8 +26,8 @@ export default function WeekdayDropDown({ navigation }: any) {
           setValue={(selectedValue) => {
             setSelectedValue(selectedValue);
             AsyncStorage.setItem("weekday", JSON.stringify(selectedValue));
-            setShowDropDown(false)
-          }}          
+            setShowDropDown(false);
+          }}
           showDropDown={() => setShowDropDown(true)}
           onDismiss={() => setShowDropDown(false)}
           visible={showDropDown}
