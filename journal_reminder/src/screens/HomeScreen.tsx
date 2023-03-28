@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
+import React from "react";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
@@ -12,7 +13,12 @@ import { Button, Text } from "react-native-paper";
  */
 export default function HomeScreen({ navigation }: any) {
   const [status, setStatus] = useState(false);
+  const [rhythm, setRhythm] = useState([]); // ACHTUNG ??????????
+  const [weekday, setWeekday] = useState([]);
+
   let statusToPrint = `${status}`;
+  let rhythmToPrint = `${rhythm}`;
+  let weekdayToPrint = `${weekday}`;
 
   /**
    * This function is called when the user clicks on the "Go to settings page" button.
@@ -33,13 +39,67 @@ export default function HomeScreen({ navigation }: any) {
     }
   }
 
+  async function myRhythmFunction() {
+    const rhythmFromAsyncStorage = JSON.parse(
+      await AsyncStorage.getItem("rhythm")
+    );
+
+    // console.log(rhythmFromAsyncStorage)
+    if (rhythm != null) {
+      setRhythm(rhythmFromAsyncStorage);
+      rhythmToPrint = `${rhythmFromAsyncStorage}`;
+      return rhythmToPrint;
+    } else {
+      return rhythmToPrint;
+    }
+  }
+
+  // edit
+
+  async function myWeekdayFunction() {
+    const weekdayFromAsyncStorage = JSON.parse(
+      await AsyncStorage.getItem("rhythm")
+    );
+
+    if (weekday != null) {
+      setRhythm(weekdayFromAsyncStorage);
+      weekdayToPrint = `${weekdayFromAsyncStorage}`;
+      return weekdayToPrint;
+    } else {
+      return weekdayToPrint;
+    }
+  }
+
   async function handleClear() {
     await AsyncStorage.clear();
   }
 
+  /*
   useFocusEffect(() => {
     myStatusFunction();
+    myRhythmFunction();
+    myWeekdayFunction();
   });
+  */
+
+  useFocusEffect(() => {
+    myStatusFunction();
+    myRhythmFunction();
+    myWeekdayFunction();
+  }, []);
+
+  
+
+
+  /*
+  useFocusEffect(
+    React.useCallback(() => {
+      myStatusFunction();
+      myRhythmFunction();
+      myWeekdayFunction();
+    }, [status, rhythm, weekday])
+  );
+  */
 
   return (
     <>
@@ -53,7 +113,7 @@ export default function HomeScreen({ navigation }: any) {
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          placeholder for rhythm
+          Rhythm: {rhythmToPrint}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">

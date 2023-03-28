@@ -6,19 +6,12 @@ import {
   en,
   registerTranslation,
 } from "react-native-paper-dates";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
 registerTranslation("en", en);
 
 export default function DatePicker() {
   const [date, setDate] = React.useState(undefined);
   const [open, setOpen] = React.useState(false);
-
-  /*  let offset = 0;
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let result = null;
-*/
 
   const weekdays = [
     "Sonntag",
@@ -42,34 +35,10 @@ export default function DatePicker() {
     [setOpen, setDate]
   );
 
-  /*
-  useEffect(() => {
-    do {
-      result = new Date(year, month, offset);
-
-      offset--;
-    } while (result.getDay() == 0 || result.getDay() == 6);
-
-    setDate(result);
-  }, []);
-
-  const selectedDate = `${date.getDate().toLocaleString("de-CH", {
-    minimumIntegerDigits: 2,
-  })}.${month.toLocaleString("de-CH", { minimumIntegerDigits: 2 })}.${year}`;
-  */
 
   return (
     <>
       <View style={{ margin: "5%" }}>
-        {/* 
-        <TouchableOpacity
-          onPress={() => setOpen(true)}
-          style={styles.container}
-        >
-          <Text style={styles.dateText}>{selectedDate}</Text>
-          <Text style={styles.dayText}>{weekdays[date.getDay()]}</Text>
-        </TouchableOpacity>
-        */}
         <Button
           onPress={() => setOpen(true)}
           uppercase={false}

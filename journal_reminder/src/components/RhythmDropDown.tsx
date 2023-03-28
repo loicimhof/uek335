@@ -1,7 +1,8 @@
 import { StyleSheet, View } from "react-native";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DropDown from "react-native-paper-dropdown";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function RhythmDropDown({ navigation }: any) {
   const [showDropDown, setShowDropDown] = useState(false);
@@ -12,6 +13,32 @@ export default function RhythmDropDown({ navigation }: any) {
     { label: "Monthly", value: "Monthly" },
   ];
 
+  async function asyncStorageGet() {
+    const myStorage = JSON.parse(await AsyncStorage.getItem("rhythm"));
+
+    if (myStorage) {
+      return myStorage;
+    } else {
+      return selectedValue;
+    }
+  }
+
+  useEffect(() => {
+    asyncStorageGet().then((res) => {
+      if (res != null) {
+        setSelectedValue(res);
+      }
+    });
+  }, []);
+
+  const onDropSelection = async () => {
+    let workValue = await asyncStorageGet();
+    setSelectedValue(workValue);
+    AsyncStorage.setItem("rhythm", JSON.stringify(workValue));
+    // console.log("selected value: " + selectedValue)
+    setShowDropDown(false);
+  };
+
   return (
     <>
       <View style={styles.container}>
@@ -19,14 +46,14 @@ export default function RhythmDropDown({ navigation }: any) {
           list={options}
           placeholder="Select Rhythm"
           value={selectedValue}
-          setValue={setSelectedValue}
+          setValue={() => {
+            onDropSelection();
+            console.log(selectedValue);
+          }}
           showDropDown={() => setShowDropDown(true)}
           onDismiss={() => setShowDropDown(false)}
           visible={showDropDown}
-          // dropDownItemStyle={styles.dropdown}
-          // dropDownItemTextStyle={styles.dropdownItem}
-          // // itemLabelStyle={styles.dropdownItemLabel}        
-           />
+        />
       </View>
     </>
   );
@@ -38,24 +65,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  // dropdown: {
-  //   width: "100%",
-  //   backgroundColor: "#1E1E1E",
-  //   color: "#fff", // white text color
-  // },
-  // dropdownLabel: {
-  //   color: "#fff", // white text color
-  //   fontSize: 16,
-  // },
-  // dropdownItem: {
-  //   justifyContent: "flex-start",
-  //   paddingHorizontal: 10,
-  //   paddingVertical: 8,
-  //   borderBottomWidth: StyleSheet.hairlineWidth,
-  //   borderBottomColor: "#666", // a shade of gray
-  // },
-  // dropdownItemLabel: {
-  //   color: "#fff", // white text color
-  //   fontSize: 16,
-  // },
 });
