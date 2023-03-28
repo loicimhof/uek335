@@ -170,5 +170,6 @@ const styles = StyleSheet.create({
     marginTop: "5%",
     backgroundColor: "#fff",
     color: "#1C1B1F",
+    borderRadius: 12
   },
 });
