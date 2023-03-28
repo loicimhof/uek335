@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 
 import React, { useState } from "react";
 import DropDown from "react-native-paper-dropdown";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function WeekdayDropDown({ navigation }: any) {
   const [showDropDown, setShowDropDown] = useState(false);
@@ -30,7 +31,11 @@ export default function WeekdayDropDown({ navigation }: any) {
           list={weekdays}
           placeholder="Select Weekday"
           value={selectedValue}
-          setValue={setSelectedValue}
+          setValue={(selectedValue) => {
+            setSelectedValue(selectedValue);
+            AsyncStorage.setItem("weekday", JSON.stringify(selectedValue));
+            setShowDropDown(false)
+          }}          
           showDropDown={() => setShowDropDown(true)}
           onDismiss={() => setShowDropDown(false)}
           visible={showDropDown}

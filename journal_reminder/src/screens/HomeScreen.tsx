@@ -44,7 +44,6 @@ export default function HomeScreen({ navigation }: any) {
       await AsyncStorage.getItem("rhythm")
     );
 
-    // console.log(rhythmFromAsyncStorage)
     if (rhythm != null) {
       setRhythm(rhythmFromAsyncStorage);
       rhythmToPrint = `${rhythmFromAsyncStorage}`;
@@ -54,15 +53,13 @@ export default function HomeScreen({ navigation }: any) {
     }
   }
 
-  // edit
-
   async function myWeekdayFunction() {
     const weekdayFromAsyncStorage = JSON.parse(
-      await AsyncStorage.getItem("rhythm")
+      await AsyncStorage.getItem("weekday")
     );
 
     if (weekday != null) {
-      setRhythm(weekdayFromAsyncStorage);
+      setWeekday(weekdayFromAsyncStorage);
       weekdayToPrint = `${weekdayFromAsyncStorage}`;
       return weekdayToPrint;
     } else {
