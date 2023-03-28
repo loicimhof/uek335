@@ -9,12 +9,12 @@ export default function ReminderDropdown({ navigation }: any) {
   const [selectedValue, setSelectedValue] = useState([0]);
 
   const remindercount = [
-    { label: "none", value: 0 },
-    { label: "one", value: 1 },
-    { label: "two", value: 2 },
-    { label: "three", value: 3 },
-    { label: "four", value: 4 },
-    { label: "five", value: 5 },
+    { label: "no reminders", value: 0 },
+    { label: "one reminder", value: 1 },
+    { label: "two reminders", value: 2 },
+    { label: "three reminders", value: 3 },
+    { label: "four reminders", value: 4 },
+    { label: "five reminders", value: 5 },
   ];
 
   async function asyncStorageGet() {

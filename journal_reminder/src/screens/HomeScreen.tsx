@@ -114,7 +114,7 @@ export default function HomeScreen({ navigation }) {
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          Active: {status == true ? "yes" : "no"}
+          Active: {status == true ? "Yes" : "No"}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
