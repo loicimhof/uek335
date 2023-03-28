@@ -24,6 +24,7 @@ export default function HomeScreen({ navigation }) {
   let statusToPrint = `${status}`;
   let rhythmToPrint = `${rhythm}`;
   let weekdayToPrint = `${weekday}`;
+  let remindercountToPrint = `${remindercount}`;
   async function getStatus() {
     const activateStorage = JSON.parse(await AsyncStorage.getItem("activate"));
 
@@ -71,25 +72,25 @@ export default function HomeScreen({ navigation }) {
   async function getDate() {
     const dateStorage = await AsyncStorage.getItem("date");
 
-    if (dateStorage) {
+    if (dateStorage != null) {
       setDate(new Date(dateStorage));
-      return dateStorage;
+      return dateStorage; 
     } else {
       return date;
     }
   }
 
-  async function myReminderCountFunction() {
-    const weekdayFromAsyncStorage = JSON.parse(
+  async function getRemindercount() {
+    const remindercountFromAsyncStorage = JSON.parse(
       await AsyncStorage.getItem("remindercount")
     );
 
-    if (weekday != null) {
-      setWeekday(weekdayFromAsyncStorage);
-      weekdayToPrint = `${weekdayFromAsyncStorage}`;
-      return weekdayToPrint;
+    if (remindercount != null) {
+      setWeekday(remindercountFromAsyncStorage);
+      remindercountToPrint = `${remindercountFromAsyncStorage}`;
+      return remindercountToPrint;
     } else {
-      return weekdayToPrint;
+      return remindercountToPrint;
     }
   }
 
@@ -97,13 +98,14 @@ export default function HomeScreen({ navigation }) {
     await AsyncStorage.clear();
   }
 
-  useFocusEffect(() => {
+  useFocusEffect(
+    React.useCallback(() => {
     getStatus();
     getRhythm();
     getWeekday();
     getTime();
     getDate();
-  });
+  }, []));
 
   return (
     <>
@@ -133,7 +135,7 @@ export default function HomeScreen({ navigation }) {
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          Reminder:
+          Reminders: {remindercountToPrint}
         </Text>
 
         <Button
