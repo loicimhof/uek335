@@ -81,7 +81,6 @@ export default function HomeScreen({ navigation }: any) {
       myStatusFunction();
       myRhythmFunction();
       myWeekdayFunction();
-      console.log("use effect ausgeführt")
     }, [])
   );
 
@@ -102,7 +101,7 @@ export default function HomeScreen({ navigation }: any) {
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          placeholder for day and time
+          day and time: {weekdayToPrint}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
