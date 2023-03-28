@@ -1,6 +1,8 @@
 import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import DropDown from "react-native-paper-dropdown";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function WeekdayDropDown() {
   const [showDropDown, setShowDropDown] = useState(false);
@@ -14,13 +16,23 @@ export default function WeekdayDropDown() {
     { label: "Friday", value: "Friday" },
   ];
 
-  const handleSelectedValueChange = (
-    value: any,
-    onSelectedValueChange: any
-  ) => {
-    setSelectedValue(value);
-    onSelectedValueChange(value);
-  };
+  async function asyncStorageGet() {
+    const myStorage = JSON.parse(await AsyncStorage.getItem("weekday"));
+
+    if (myStorage) {
+      return myStorage;
+    } else {
+      return selectedValue;
+    }
+  }
+
+  useEffect(() => {
+    asyncStorageGet().then((res) => {
+      if (res != null) {
+        setSelectedValue(res);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -29,7 +41,11 @@ export default function WeekdayDropDown() {
           list={weekdays}
           placeholder="Select Weekday"
           value={selectedValue}
-          setValue={setSelectedValue}
+          setValue={(selectedValue) => {
+            setSelectedValue(selectedValue);
+            AsyncStorage.setItem("weekday", JSON.stringify(selectedValue));
+            setShowDropDown(false);
+          }}
           showDropDown={() => setShowDropDown(true)}
           onDismiss={() => setShowDropDown(false)}
           visible={showDropDown}

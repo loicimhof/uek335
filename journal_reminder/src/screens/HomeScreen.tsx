@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import moment from "moment";
+import React from "react";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
@@ -13,9 +14,10 @@ import { Button, Text } from "react-native-paper";
  */
 export default function HomeScreen({ navigation }) {
   const [status, setStatus] = useState(false);
-  const [rhythm, setRhythm] = useState("");
   const [date, setDate] = useState<Date>();
   const [time, setTime] = useState("");
+  const [weekday, setWeekday] = useState([]);
+  const [rhythm, setRhythm] = useState([]);
 
   async function getStatus() {
     const activateStorage = JSON.parse(await AsyncStorage.getItem("activate"));
@@ -61,6 +63,34 @@ export default function HomeScreen({ navigation }) {
     }
   }
 
+  async function getRhythm() {
+    const rhythmFromAsyncStorage = JSON.parse(
+      await AsyncStorage.getItem("rhythm")
+    );
+
+    if (rhythm != null) {
+      setRhythm(rhythmFromAsyncStorage);
+      rhythmToPrint = `${rhythmFromAsyncStorage}`;
+      return rhythmToPrint;
+    } else {
+      return rhythmToPrint;
+    }
+  }
+
+  async function getWeekday() {
+    const weekdayFromAsyncStorage = JSON.parse(
+      await AsyncStorage.getItem("weekday")
+    );
+
+    if (weekday != null) {
+      setWeekday(weekdayFromAsyncStorage);
+      weekdayToPrint = `${weekdayFromAsyncStorage}`;
+      return weekdayToPrint;
+    } else {
+      return weekdayToPrint;
+    }
+  }
+
   async function handleClear() {
     await AsyncStorage.clear();
   }
@@ -70,6 +100,7 @@ export default function HomeScreen({ navigation }) {
     getRhythm();
     getDate();
     getTime();
+    getWeekday();
   });
 
   return (
@@ -85,6 +116,10 @@ export default function HomeScreen({ navigation }) {
 
         <Text style={styles.text} variant="headlineSmall">
           Rhythm: {rhythm}
+        </Text>
+        
+        <Text style={styles.text} variant="headlineSmall">
+          Weekday: {weekday}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
