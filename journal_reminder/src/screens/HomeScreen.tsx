@@ -1,35 +1,63 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
+import moment from "moment";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
 
 /**
- * This component represents the home page of the app.
- *
- * @param {object} navigation - An object that provides functions for navigating between app screens.
+ * Represents the HomeScreen component.
+ * @param navigation The navigation object used to navigate to other screens.
+ * @returns The HomeScreen component.
  */
-export default function HomeScreen({ navigation }: any) {
+export default function HomeScreen({ navigation }) {
   const [status, setStatus] = useState(false);
-  let statusToPrint = `${status}`;
+  const [rhythm, setRhythm] = useState("");
+  const [date, setDate] = useState<Date>();
+  const [time, setTime] = useState("");
 
-  /**
-   * This function is called when the user clicks on the "Go to settings page" button.
-   */
-  const handleSettingsNavigation = () => {
-    navigation.navigate("Settings");
-  };
+  async function getStatus() {
+    const activateStorage = JSON.parse(await AsyncStorage.getItem("activate"));
 
-  async function myStatusFunction() {
-    const activationStatus = JSON.parse(await AsyncStorage.getItem("activate"));
-
-    if (activationStatus != null) {
-      setStatus(activationStatus);
-      statusToPrint = `${status}`;
-      return statusToPrint;
+    if (activateStorage) {
+      setStatus(activateStorage);
+      return activateStorage;
     } else {
-      return statusToPrint;
+      return status;
+    }
+  }
+
+  async function getRhythm() {
+    const rhythmStorage = JSON.parse(await AsyncStorage.getItem("rhythm"));
+
+    if (rhythmStorage) {
+      setRhythm(rhythmStorage);
+      return rhythmStorage;
+    } else {
+      return rhythm;
+    }
+  }
+
+  async function getDate() {
+    const dateStorage = await AsyncStorage.getItem("date");
+
+    if (dateStorage) {
+      setDate(new Date(dateStorage));
+      return dateStorage;
+    } else {
+      return date;
+    }
+  }
+
+  async function getTime() {
+    const timeStorage = JSON.parse(await AsyncStorage.getItem("time"));
+
+    if (timeStorage) {
+      const parsedTime = timeStorage.hours + ":" + timeStorage.minutes;
+      setTime(parsedTime);
+    } else {
+      setTime("No time selected");
     }
   }
 
@@ -38,7 +66,10 @@ export default function HomeScreen({ navigation }: any) {
   }
 
   useFocusEffect(() => {
-    myStatusFunction();
+    getStatus();
+    getRhythm();
+    getDate();
+    getTime();
   });
 
   return (
@@ -49,33 +80,41 @@ export default function HomeScreen({ navigation }: any) {
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          Active: {statusToPrint}
+          Activ: {status == true ? "yes" : "no"}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          placeholder for rhythm
+          Rhythm: {rhythm}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          placeholder for day and time
+          Date: {moment(date).format("Do")}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          placeholder for reminder
+          Time: {time}
+        </Text>
+
+        <Text style={styles.text} variant="headlineSmall">
+          Reminder:
         </Text>
 
         <Button
           mode="contained-tonal"
-          style={{ margin: "5%" }}
-          onPress={handleSettingsNavigation}
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate("Settings");
+          }}
         >
           Edit
         </Button>
 
         <Button
           mode="contained-tonal"
-          style={{ margin: "5%" }}
-          onPress={() => handleClear()}
+          style={styles.button}
+          onPress={() => {
+            handleClear();
+          }}
         >
           Clear
         </Button>
@@ -86,9 +125,6 @@ export default function HomeScreen({ navigation }: any) {
   );
 }
 
-/**
- * An object that defines CSS styles for the HomeScreen component.
- */
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#1C1B1F",
@@ -97,15 +133,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     color: "#fff",
   },
-  button: {
-    marginTop: 16,
-    backgroundColor: "#fff",
-    color: "#1C1B1F",
+  textTitle: {
+    color: "#D0BCFF",
   },
   text: {
     color: "#fff",
   },
-  textTitle: {
-    color: "#D0BCFF",
+  button: {
+    marginTop: "5%",
+    backgroundColor: "#fff",
+    color: "#1C1B1F",
   },
 });

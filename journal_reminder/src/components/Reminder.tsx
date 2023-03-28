@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Text, Switch } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Reminder = () => {
+export default function Reminder() {
   const [isReminderOn, setIsReminderOn] = useState(false);
 
   const onToggleSwitch = () => setIsReminderOn(!isReminderOn);
@@ -38,6 +38,4 @@ const Reminder = () => {
       </View>
     </>
   );
-};
-
-export default Reminder;
+}

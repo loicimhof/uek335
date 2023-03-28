@@ -1,9 +1,8 @@
 import { StyleSheet, View } from "react-native";
-
 import React, { useState } from "react";
 import DropDown from "react-native-paper-dropdown";
 
-export default function RhythmDropDown({ navigation }: any) {
+export default function RhythmDropDown() {
   const [showDropDown, setShowDropDown] = useState(false);
   const [selectedValue, setSelectedValue] = useState([]);
 
@@ -25,8 +24,8 @@ export default function RhythmDropDown({ navigation }: any) {
           visible={showDropDown}
           // dropDownItemStyle={styles.dropdown}
           // dropDownItemTextStyle={styles.dropdownItem}
-          // // itemLabelStyle={styles.dropdownItemLabel}        
-           />
+          // itemLabelStyle={styles.dropdownItemLabel}
+        />
       </View>
     </>
   );

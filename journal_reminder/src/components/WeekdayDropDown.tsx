@@ -1,9 +1,8 @@
 import { StyleSheet, View } from "react-native";
-
 import React, { useState } from "react";
 import DropDown from "react-native-paper-dropdown";
 
-export default function WeekdayDropDown({ navigation }: any) {
+export default function WeekdayDropDown() {
   const [showDropDown, setShowDropDown] = useState(false);
   const [selectedValue, setSelectedValue] = useState([]);
 

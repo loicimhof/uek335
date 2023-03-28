@@ -3,37 +3,33 @@ import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { Text, Switch } from "react-native-paper";
 
-
-/**
- * A component to toggle activation state.
- */
 const Activate = () => {
-  const [isActivateOn, setIsActivateOn] = useState(false);
+  const [isActivated, setIsActivated] = useState(false);
 
-  async function asyncStorageGet() {
-    const myStorage = JSON.parse(await AsyncStorage.getItem("activate"));
+  async function asyncStorageGetStatus() {
+    const activateStorage = JSON.parse(await AsyncStorage.getItem("activate"));
 
-    if (myStorage) {
-      return myStorage;
+    if (activateStorage) {
+      return activateStorage;
     } else {
-      return isActivateOn;
+      return isActivated;
     }
   }
 
+  const onActivateToggle = async () => {
+    let workValue = await asyncStorageGetStatus();
+    workValue = !workValue;
+    setIsActivated(workValue);
+    AsyncStorage.setItem("activate", JSON.stringify(workValue));
+  };
+
   useEffect(() => {
-    asyncStorageGet().then((res) => {
-      if (res != null) {
-        setIsActivateOn(res);
+    asyncStorageGetStatus().then((res) => {
+      if (res) {
+        setIsActivated(res);
       }
     });
   }, []);
-
-  const onActivateToggle = async () => {
-    let workValue = await asyncStorageGet();
-    workValue = !workValue;
-    setIsActivateOn(workValue);
-    AsyncStorage.setItem("activate", JSON.stringify(workValue));
-  };
 
   return (
     <>
@@ -48,7 +44,7 @@ const Activate = () => {
           Activate
         </Text>
 
-        <Switch value={isActivateOn} onValueChange={() => onActivateToggle()} />
+        <Switch value={isActivated} onValueChange={() => onActivateToggle()} />
       </View>
     </>
   );
