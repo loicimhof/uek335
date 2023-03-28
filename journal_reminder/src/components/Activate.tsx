@@ -25,7 +25,7 @@ const Activate = () => {
 
   useEffect(() => {
     asyncStorageGetStatus().then((res) => {
-      if (res) {
+      if (res != null) {
         setIsActivated(res);
       }
     });

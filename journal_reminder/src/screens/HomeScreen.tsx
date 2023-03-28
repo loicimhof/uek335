@@ -37,18 +37,18 @@ export default function HomeScreen({ navigation }) {
       setRhythm(rhythmStorage);
       return rhythmStorage;
     } else {
-      return rhythm;
+      setRhythm(["No rhythm selected"]);
     }
   }
 
-  async function getDate() {
-    const dateStorage = await AsyncStorage.getItem("date");
+  async function getWeekday() {
+    const weekdayStorage = JSON.parse(await AsyncStorage.getItem("weekday"));
 
-    if (dateStorage) {
-      setDate(new Date(dateStorage));
-      return dateStorage;
+    if (weekdayStorage) {
+      setDate(weekdayStorage);
+      return weekdayStorage;
     } else {
-      return date;
+      setWeekday(["No weekday selected"]);
     }
   }
 
@@ -63,31 +63,14 @@ export default function HomeScreen({ navigation }) {
     }
   }
 
-  async function getRhythm() {
-    const rhythmFromAsyncStorage = JSON.parse(
-      await AsyncStorage.getItem("rhythm")
-    );
+  async function getDate() {
+    const dateStorage = await AsyncStorage.getItem("date");
 
-    if (rhythm != null) {
-      setRhythm(rhythmFromAsyncStorage);
-      rhythmToPrint = `${rhythmFromAsyncStorage}`;
-      return rhythmToPrint;
+    if (dateStorage) {
+      setDate(new Date(dateStorage));
+      return dateStorage;
     } else {
-      return rhythmToPrint;
-    }
-  }
-
-  async function getWeekday() {
-    const weekdayFromAsyncStorage = JSON.parse(
-      await AsyncStorage.getItem("weekday")
-    );
-
-    if (weekday != null) {
-      setWeekday(weekdayFromAsyncStorage);
-      weekdayToPrint = `${weekdayFromAsyncStorage}`;
-      return weekdayToPrint;
-    } else {
-      return weekdayToPrint;
+      return date;
     }
   }
 
@@ -98,9 +81,9 @@ export default function HomeScreen({ navigation }) {
   useFocusEffect(() => {
     getStatus();
     getRhythm();
-    getDate();
-    getTime();
     getWeekday();
+    getTime();
+    getDate();
   });
 
   return (
@@ -117,17 +100,17 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.text} variant="headlineSmall">
           Rhythm: {rhythm}
         </Text>
-        
+
         <Text style={styles.text} variant="headlineSmall">
           Weekday: {weekday}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          Date: {moment(date).format("Do")}
+          Time: {time}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          Time: {time}
+          Date: {moment(date).format("Do")}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
