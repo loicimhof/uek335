@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import moment from "moment";
 import React from "react";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
 
 /**
@@ -18,13 +18,8 @@ export default function HomeScreen({ navigation }) {
   const [time, setTime] = useState("");
   const [weekday, setWeekday] = useState([]);
   const [rhythm, setRhythm] = useState([]);
-  const [remindercount, setRemindercount] = useState([]);
+  const [reminderCount, setReminderCount] = useState([]);
 
-
-  let statusToPrint = `${status}`;
-  let rhythmToPrint = `${rhythm}`;
-  let weekdayToPrint = `${weekday}`;
-  let remindercountToPrint = `${remindercount}`;
   async function getStatus() {
     const activateStorage = JSON.parse(await AsyncStorage.getItem("activate"));
 
@@ -51,7 +46,7 @@ export default function HomeScreen({ navigation }) {
     const weekdayStorage = JSON.parse(await AsyncStorage.getItem("weekday"));
 
     if (weekdayStorage) {
-      setDate(weekdayStorage);
+      setWeekday(weekdayStorage);
       return weekdayStorage;
     } else {
       setWeekday(["No weekday selected"]);
@@ -64,8 +59,10 @@ export default function HomeScreen({ navigation }) {
     if (timeStorage) {
       const parsedTime = timeStorage.hours + ":" + timeStorage.minutes;
       setTime(parsedTime);
+      return parsedTime;
     } else {
       setTime("No time selected");
+      return time;
     }
   }
 
@@ -74,38 +71,52 @@ export default function HomeScreen({ navigation }) {
 
     if (dateStorage != null) {
       setDate(new Date(dateStorage));
-      return dateStorage; 
+      return dateStorage;
     } else {
-      return date;
+      var dateCheck = new Date(dateStorage);
+      var isDateValid = !isNaN(dateCheck.valueOf());
+      if (!isDateValid) {
+        setDate(new Date("No date selected"));
+        console.log(date);
+      } else {
+        return date;
+      }
     }
   }
 
-  async function getRemindercount() {
-    const remindercountFromAsyncStorage = JSON.parse(
-      await AsyncStorage.getItem("remindercount")
-    );
+  async function getReminderCount() {
+    const reminderCountStorage = await AsyncStorage.getItem("remindercount");
 
-    if (remindercount != null) {
-      setWeekday(remindercountFromAsyncStorage);
-      remindercountToPrint = `${remindercountFromAsyncStorage}`;
-      return remindercountToPrint;
+    if (reminderCountStorage) {
+      setReminderCount([reminderCountStorage.toString()]);
+      return reminderCountStorage;
     } else {
-      return remindercountToPrint;
+      return reminderCount;
     }
   }
 
   async function handleClear() {
-    await AsyncStorage.clear();
+    const asyncStorageKeys = await AsyncStorage.getAllKeys();
+    if (asyncStorageKeys.length > 0) {
+      if (Platform.OS === "android") {
+        await AsyncStorage.clear();
+      }
+      if (Platform.OS === "ios") {
+        await AsyncStorage.multiRemove(asyncStorageKeys);
+      }
+    }
   }
 
   useFocusEffect(
     React.useCallback(() => {
-    getStatus();
-    getRhythm();
-    getWeekday();
-    getTime();
-    getDate();
-  }, []));
+      getStatus();
+      getRhythm();
+      getWeekday();
+      getTime();
+      getDate();
+      getReminderCount();
+    }, [])
+  );
 
   return (
     <>
@@ -115,7 +126,7 @@ export default function HomeScreen({ navigation }) {
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          Activ: {status == true ? "yes" : "no"}
+          Active: {status == true ? "yes" : "no"}
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
@@ -135,7 +146,7 @@ export default function HomeScreen({ navigation }) {
         </Text>
 
         <Text style={styles.text} variant="headlineSmall">
-          Reminders: {remindercountToPrint}
+          Reminders: {reminderCount}
         </Text>
 
         <Button

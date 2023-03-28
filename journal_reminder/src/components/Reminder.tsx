@@ -6,11 +6,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ReminderDropdown({ navigation }: any) {
   const [showDropDown, setShowDropDown] = useState(false);
-  const [selectedValue, setSelectedValue] = useState([]);
+  const [selectedValue, setSelectedValue] = useState([0]);
 
   const remindercount = [
-    { label: "none", value: 0},
-    { label: "one", value: 1},
+    { label: "none", value: 0 },
+    { label: "one", value: 1 },
     { label: "two", value: 2 },
     { label: "three", value: 3 },
     { label: "four", value: 4 },
@@ -44,7 +44,10 @@ export default function ReminderDropdown({ navigation }: any) {
           value={selectedValue}
           setValue={(selectedValue) => {
             setSelectedValue(selectedValue);
-            AsyncStorage.setItem("remindercount", JSON.stringify(selectedValue));
+            AsyncStorage.setItem(
+              "remindercount",
+              JSON.stringify(selectedValue)
+            );
             setShowDropDown(false);
           }}
           showDropDown={() => setShowDropDown(true)}
