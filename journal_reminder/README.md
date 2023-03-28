@@ -19,3 +19,11 @@ Scan this QR code with Expo Go (Android) or the Camera app (iOS)
 ### Emulator
 
 Type `a` to start for an Android device or `i` for an iOS device
+
+### To stop the project
+
+Type `Win + c`
+
+### To reload the project
+
+Type `r`
