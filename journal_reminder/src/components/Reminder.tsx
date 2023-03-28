@@ -1,41 +1,65 @@
-import React, { useState } from "react";
-import { View } from "react-native";
-import { Text, Switch } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
+
+import React, { useEffect, useState } from "react";
+import DropDown from "react-native-paper-dropdown";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Reminder() {
-  const [isReminderOn, setIsReminderOn] = useState(false);
+export default function ReminderDropdown({ navigation }: any) {
+  const [showDropDown, setShowDropDown] = useState(false);
+  const [selectedValue, setSelectedValue] = useState([]);
 
-  const onToggleSwitch = () => setIsReminderOn(!isReminderOn);
+  const remindercount = [
+    { label: "none", value: 0},
+    { label: "one", value: 1},
+    { label: "two", value: 2 },
+    { label: "three", value: 3 },
+    { label: "four", value: 4 },
+    { label: "five", value: 5 },
+  ];
 
-  async function test() {
-    await AsyncStorage.setItem("testnumber", "1");
+  async function asyncStorageGet() {
+    const myStorage = JSON.parse(await AsyncStorage.getItem("remindercount"));
 
-    const response = await AsyncStorage.getItem("testnumber");
-    console.log(response);
+    if (myStorage) {
+      return myStorage;
+    } else {
+      return selectedValue;
+    }
   }
+
+  useEffect(() => {
+    asyncStorageGet().then((res) => {
+      if (res != null) {
+        setSelectedValue(res);
+      }
+    });
+  }, []);
 
   return (
     <>
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
-        <Text style={{ color: "#ffffff" }} variant="bodyLarge">
-          Reminder
-        </Text>
-
-        <Switch
-          value={isReminderOn}
-          onValueChange={() => {
-            onToggleSwitch();
-            test();
+      <View style={styles.container}>
+        <DropDown
+          list={remindercount}
+          placeholder="Count of reminders"
+          value={selectedValue}
+          setValue={(selectedValue) => {
+            setSelectedValue(selectedValue);
+            AsyncStorage.setItem("remindercount", JSON.stringify(selectedValue));
+            setShowDropDown(false);
           }}
+          showDropDown={() => setShowDropDown(true)}
+          onDismiss={() => setShowDropDown(false)}
+          visible={showDropDown}
         />
       </View>
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    color: "#D0BCFF",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
